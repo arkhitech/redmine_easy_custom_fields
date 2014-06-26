@@ -6,9 +6,6 @@
         <label for='custom_field_tracker'><%= l(:custom_field_tracker) %> :</label>
         <%= select_tag 'custom_field_tracker', tracker_options_for_select(@custom_field_tracker),
                                       :class => "small",:onchange => "this.form.submit(); return false;" %>
-   
-        <%#= submit_tag l(:button_apply), :class => "small", :tab=>'IssueCustomField' %>
-        <%#= link_to l(:button_clear), {:controller => 'entities', :action => 'project_report'}, :class => 'icon icon-reload' %>
       <% end %>
     </tr>
     <% end %>
@@ -52,13 +49,11 @@ $( document ).ready(function() {
   
 $( "#sortable" ).sortable(
   { update: function(event, ui){
-      
-           data: $(this).sortable("serialize"),
-           alert($( "#sortable" ).sortable('toArray'));
+            
+           //alert($( "#sortable" ).sortable('toArray'));
            var itm_arr = $("#sortable").sortable('toArray');
            var positions = {custom_fields: itm_arr};
-           
-
+           data: $(this).sortable("serialize"),
                $.ajax({
                    url: "/custom_fields/rearrange_fields",
                     data: {tab: 'IssueCustomField',custom_fields: itm_arr,
