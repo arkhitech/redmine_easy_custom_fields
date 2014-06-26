@@ -1,10 +1,10 @@
 Redmine::Plugin.register :redmine_easy_custom_fields do
-  name 'Redmine Easy Custom Fields plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
-  version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  name 'Redmine Easy Custom Fields'
+  author 'Arkhitech'
+  description 'This is a plugin for Redmine to implement tracker filter on issue custom fields and enable position change by drag and drop'
+  url 'http://github.com/arkhitech/redmine_easy_custom_fields'
+  author_url 'https://github.com/arkhitech'
+  version '1.0.0'
   
   Rails.configuration.to_prepare do 
       require_dependency 'custom_field'

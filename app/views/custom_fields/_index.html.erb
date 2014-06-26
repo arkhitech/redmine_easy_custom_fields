@@ -21,7 +21,7 @@
     <th><%=l(:button_sort)%></th>
     <th></th>
   </tr></thead>
-  <tbody id="sortable">
+  <tbody id="sortable-custom-field">
   <% (@custom_fields_by_type[tab[:name]] || []).sort.each do |custom_field| -%>
 
     <tr class="<%= cycle("odd", "even")%>" id="<%= "#{custom_field.id}"%>" >
@@ -47,20 +47,20 @@
   
 $( document ).ready(function() {
   
-$( "#sortable" ).sortable(
+$( "#sortable-custom-field" ).sortable(
   { update: function(event, ui){
             
            //alert($( "#sortable" ).sortable('toArray'));
-           var itm_arr = $("#sortable").sortable('toArray');
-           var positions = {custom_fields: itm_arr};
+           var itm_arr = $("#sortable-custom-field").sortable('toArray');
+           //var positions = {custom_fields: itm_arr};
            data: $(this).sortable("serialize"),
                $.ajax({
                    url: "/custom_fields/rearrange_fields",
                     data: {tab: 'IssueCustomField',custom_fields: itm_arr,
                    },
                    type: 'POST',         
-                   success: function (data) {
-                       $("#test").html(data);
+                   failure: function (data) {
+                       alert('Unable to Rearrange'+(data));
                    }
 
                });
@@ -71,7 +71,7 @@ $( "#sortable" ).sortable(
 
            });
 
-    $( "#sortable" ).disableSelection();
+    $( "#sortable-custom-field" ).disableSelection();
 });
  
 
