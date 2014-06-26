@@ -5,4 +5,11 @@ resources :easy_custom_fields do
     post :index
   end
   
+
+end
+
+resources :custom_fields do
+  collection do
+    post :rearrange_fields
+  end
 end
